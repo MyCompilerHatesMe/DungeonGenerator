@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class DungeonMap {
 
     private final int MAX_WIDTH, MAX_HEIGHT;
-    private int[][] map;
+    private TileType[][] map;
 
     private boolean roomsPopulated;
     private ArrayList<DungeonRoom> rooms;
@@ -19,7 +19,7 @@ public class DungeonMap {
     public DungeonMap(int MAX_WIDTH, int MAX_HEIGHT) {
         this.MAX_HEIGHT = MAX_HEIGHT;
         this.MAX_WIDTH = MAX_WIDTH;
-        map = new int[MAX_WIDTH][MAX_HEIGHT];
+        map = new TileType[MAX_WIDTH][MAX_HEIGHT];
     }
 
     public void locateRooms() {

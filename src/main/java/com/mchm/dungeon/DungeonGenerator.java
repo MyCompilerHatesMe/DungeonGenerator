@@ -12,6 +12,7 @@ public class DungeonGenerator {
     }
 
     //TODO: generateCellularAutomata
-    //TODO: generateSimplexNoise or PerlinNoise
+    //TODO: generateSimplexNoise
+    //TODO: generateBSP
 
 }

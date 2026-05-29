@@ -15,7 +15,7 @@ public class DungeonRoom {
         this.y = y;
         this.width = width;
         this.height= height;
-        this.centreX = (x+width)/2;
-        this.centreY = (y+height)/2;
+        this.centreX = x + width/2;
+        this.centreY = y + height/2;
     }
 }
