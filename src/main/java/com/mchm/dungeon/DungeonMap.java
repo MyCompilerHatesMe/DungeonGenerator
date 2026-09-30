@@ -1,10 +1,12 @@
 package com.mchm.dungeon;
 
+import com.mchm.exceptions.InvalidRoomException;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -20,18 +22,25 @@ public class DungeonMap {
         this.MAX_HEIGHT = MAX_HEIGHT;
         this.MAX_WIDTH = MAX_WIDTH;
         map = new TileType[MAX_WIDTH][MAX_HEIGHT];
+        rooms = new ArrayList<>();
     }
 
-    public boolean addRoom(DungeonRoom room) {
+    public void addRoom(DungeonRoom room) throws InvalidRoomException {
         if (!isRoomValid(room))
-            return false;
+            throw new InvalidRoomException(room);
 
         rooms.add(room);
-        return true;
+        for (int i = 0; i < room.getWidth(); i++) {
+            for (int j = 0; j < room.getHeight(); j++) {
+                map[j+room.getY()][i+room.getX()] = room.getFloorType();
+            }
+        }
     }
 
     private boolean isRoomValid(DungeonRoom room) {
-        boolean greaterBounds = (room.getX() + room.getWidth()) > MAX_WIDTH || (room.getY() + room.getHeight()) > MAX_HEIGHT;
+        boolean greaterBounds = (room.getX() + room.getWidth()) > MAX_WIDTH ||
+                (room.getY() + room.getHeight()) > MAX_HEIGHT;
+
         boolean lesserBounds = (room.getX() < 0 || room.getY() < 0);
 
         return !greaterBounds && !lesserBounds;
@@ -48,5 +57,9 @@ public class DungeonMap {
                         .replaceAll("\\[\\[|]]", "")
                         .replace("], [", "]\n[")
                 + "]";
+    }
+
+    public String stringifyRooms() {
+        return rooms.stream().map(DungeonRoom::toString).collect(Collectors.joining("\n"));
     }
 }
