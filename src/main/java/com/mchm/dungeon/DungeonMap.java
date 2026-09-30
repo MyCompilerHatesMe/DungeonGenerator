@@ -22,6 +22,21 @@ public class DungeonMap {
         map = new TileType[MAX_WIDTH][MAX_HEIGHT];
     }
 
+    public boolean addRoom(DungeonRoom room) {
+        if (!isRoomValid(room))
+            return false;
+
+        rooms.add(room);
+        return true;
+    }
+
+    private boolean isRoomValid(DungeonRoom room) {
+        boolean greaterBounds = (room.getX() + room.getWidth()) > MAX_WIDTH || (room.getY() + room.getHeight()) > MAX_HEIGHT;
+        boolean lesserBounds = (room.getX() < 0 || room.getY() < 0);
+
+        return !greaterBounds && !lesserBounds;
+    }
+
     public void locateRooms() {
         //TODO: this should find all the rooms in the map and populate rooms if not already populated
         if (roomsPopulated) return;

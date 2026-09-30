@@ -9,6 +9,7 @@ public class DungeonRoom {
     private final int x, y, width, height, centreX, centreY;
     // floor tile type is assumed as TileType.FLOOR
     // idk if i'll add more floor types
+    // x, y are bottom left corner coordinates
 
     public DungeonRoom(int x, int y, int width, int height) {
         this.x = x;
