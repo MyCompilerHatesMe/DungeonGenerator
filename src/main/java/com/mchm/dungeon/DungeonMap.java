@@ -59,7 +59,7 @@ public class DungeonMap {
                 + "]";
     }
 
-    public String stringifyRooms() {
+    public String formattedRooms() {
         return rooms.stream().map(DungeonRoom::toString).collect(Collectors.joining("\n"));
     }
 }

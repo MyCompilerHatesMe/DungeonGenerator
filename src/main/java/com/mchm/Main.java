@@ -10,5 +10,6 @@ public class Main {
         map = dg.generateRandom(map, 10);
 
         System.out.println(map);
+        System.out.println(map.formattedRooms());
     }
 }
